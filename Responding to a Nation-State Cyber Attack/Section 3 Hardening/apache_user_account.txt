@@ -1,0 +1,20 @@
+first create apache group
+
+$sudo groupadd apache-group
+
+then create apache-user and add it to the apache-group with no shell access
+
+$sudo useradd -g apache-group -d /var/www -s /usr/sbin/nologin apache-user
+
+also change the ownership of apache directory to the apache-user and apache-group
+
+$sudo chown apache-user:apache-group /var/www
+
+
+then change the apache_conf file to let apache be used from the apache-user and apache-group
+
+$sudo vi /etc/apache2/apache2.conf
+
+User apache-user
+Group apache-group
+

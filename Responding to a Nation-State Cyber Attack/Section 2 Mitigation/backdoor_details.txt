@@ -1,0 +1,32 @@
+1) discovering the rogue username 
+
+after analyzing the log files inside /var/log 
+and checked the /etc/passwd file 
+with these commands 
+
+$cat /etc/passwd
+darklord:x:1001:1001:,,,:/home/darklord:/bin/bash
+
+$cat /var/log/sys.log | grep darklord
+Feb 26 07:44:32 ubuntu-VirtualBox CRON[940]: (root) CMD (/etc/darklord.sh)
+
+I discoverd the rogue username called : "darklord"
+
+2) Locate the malicious process:
+after analyzing the process on the system with this command 
+
+$ps aux 
+
+i found this process 
+root       966   963  0 07:44 ?        00:00:00 /tmp/remotesec -k -l 56565
+
+that run from the "/tmp" directory 
+
+3) the non-standard port on it is : 56565
+$netsat -antp
+tcp        0      0 0.0.0.0:56565           0.0.0.0:*               LISTEN      -
+
+i killed the process and deleted the rogue user with these commands
+$kill -9 966
+
+$sudo userdel darklord
