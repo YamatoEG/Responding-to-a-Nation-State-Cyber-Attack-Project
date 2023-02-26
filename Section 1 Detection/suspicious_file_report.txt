@@ -1,0 +1,10 @@
+
+the file name is : "SSH-One"
+
+the embedded callout urls inside the file :
+	
+
+	http://darkl0rd.com:7758/SSH-T
+	http://darkl0rd.com:7758/SSH-One
+
+
